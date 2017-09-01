@@ -1,13 +1,15 @@
 module MathUtils
   def self.random
     randomizer = Random.new
-    randomizer.rand(-0.2..0.2)
+    randomizer.rand(-0.4..0.4)
   end
 
   def self.mse(errors)
-    errors.reduce(0) do |sum, err|
-      sum + err ** 2
+    errors_sum = errors.reduce(0) do |sum, err|
+      sum + err * err
     end
+
+    errors_sum / errors.size
   end
 
   def self.sigmoid(z)
