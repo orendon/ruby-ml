@@ -18,12 +18,9 @@ class Neuron
 
   def activate(inputs)
     @last_inputs = inputs
-    sum = 0
 
     # perceptron (dot product)
-    inputs.each_with_index do |input, idx|
-      sum += input * @weights[idx]
-    end
+    sum = MathUtils.dot_product(inputs, @weights)
     sum += @bias
 
     # activation function

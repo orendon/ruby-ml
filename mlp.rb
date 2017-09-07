@@ -7,7 +7,7 @@ class MLP
   def initialize
     @layers = Array.new
     @error_threshold = 0.00001
-    @learning_rate = 0.3
+    @learning_rate = 0.01
   end
 
   def add_layer(neurons_count, inputs_count)
@@ -39,9 +39,9 @@ class MLP
   def learn(training_data)
     output_layer = @layers.last
 
-    #500_000.times do |i|
-    20.times do |i|
-      printy
+    1_000_000.times do |i|
+    #20.times do |i|
+      #printy
 
       @iter = i
       back_propagation([training_data.first], output_layer)
@@ -89,7 +89,7 @@ class MLP
     training_errors = output_layer.neurons.reduce([]){ |errors, neu| errors.concat(neu.errors) }
     mse = MathUtils.mse(training_errors)
 
-    puts "iter: #{@iter}, mse: #{mse}" #if @iter % 10_000 == 0
+    puts "iter: #{@iter}, mse: #{mse}" if @iter % 10_000 == 0
     return if mse <= @error_threshold
   end
 end
